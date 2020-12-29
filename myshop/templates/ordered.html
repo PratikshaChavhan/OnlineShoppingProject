@@ -1,0 +1,33 @@
+{% extends 'base.html' %} 
+{% block MyPage %}
+<form action="ordered">
+    {% csrf_token %}
+    <table cellpading="10" cellspacing="10" border="1">
+        <tr>
+            <th>Id</th>
+            <th>Product Name</th>
+            <th>Price</th>
+            <th>Description</th>
+            <th>ProductImage</th>
+            <th>Category</th>
+            <th>DetailOfOrder</th>
+            <th>TotalBill</th>
+            <th>OrderDate</th>
+        </tr>
+        {% for i in ordlist %}
+        <tr>
+            <td>{{i.id}}</td>
+            <td>{{i.Product.Pname}}</td>
+            <td>{{i.Product.Price}}</td>
+            <td>{{i.Product.Description}}</td>
+            <td><img src="{{i.pimage}}" height="100" width="100"></td>
+            <td>{{i.status}}</td>
+            <td>{{i.totalBill}}</td>
+            <td>{{i.orderdate}}</td>
+            <td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br><br>
+</form>
+{% endblock %}

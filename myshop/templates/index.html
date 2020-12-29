@@ -1,0 +1,16 @@
+<h1>HOME PAGE</h1>
+<h2><a href="">Home</a></h2>
+
+{% if user.is_authenticated %}
+<h2><a href="">CategoryList</a></h2>
+<h2><a href="">ProductList</a></h2>
+<h2><a href="">SearchtList</a></h2>
+<h2><a href="logOut">Logout</a></h2>
+<h2><a href="checklist">CheckList</a></h2>
+
+
+{%else%}
+<h2><a href="addUser">Register</a></h2>
+<h2><a href="userlogin">Login</a></h2>
+
+{%endif%}

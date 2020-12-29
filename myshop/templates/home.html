@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  {% load static %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>My Shop</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="{% static 'css/bmin.css' %}" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="{% static 'css/myapp.css' %}" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  {% include 'navbar.html' %}
+  <!-- page content -->
+  <div class="container">
+
+    <div class="row">
+      <!-- sidebar -->
+      {% include 'sideBar.html' %}
+      
+      <!-- /.col-lg-3 -->
+
+      <div class="col-lg-9">
+
+        {% include 'slider.html' %}
+
+        <div class="row">
+          {% for i in pl %}
+
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100">
+              <a href="#"><img class="card-img-top" src="{{i.pimage}}" alt=""></a>
+              <div class="card-body">
+                <h4 class="card-title">
+                  <a href="#">{{i.Pname}}</a>
+                </h4>
+                <h5>{{i.Price}}Rs.</h>
+                <p class="card-text">{{i.Description}}</p>
+                {% if user.is_authenticated %}
+                <h6><button><a href="getCart?id={{i.id}}">Add To Cart</a></button></h6>
+                {% else %}
+                <h6><button><a href="userlogin">Add To Cart</a></button></h6>
+                {% endif %}
+              </div>
+              <div class="card-footer">
+                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+
+          
+        </div>
+        <!-- /.row -->
+
+      </div>
+      <!-- /.col-lg-9 -->
+
+    </div>
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+
+  <!-- Footer -->
+  {% include 'footer.html' %}
+  <!-- Bootstrap core JavaScript -->
+  <script src="{% static 'js/bmin.js' %}"></script>
+  <script src="{% static 'js/jq.js' %}"></script>
+
+</body>
+
+</html>

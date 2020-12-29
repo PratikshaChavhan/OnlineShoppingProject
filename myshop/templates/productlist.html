@@ -1,0 +1,36 @@
+{% extends 'base.html' %} 
+{% block MyPage %}
+<form method="POST">
+    {% csrf_token %}
+    <table cellpading="10" cellspacing="10" border="1">
+        <tr>
+            <th>Id</th>
+            <th>Product Name</th>
+            <th>Price</th>
+            <th>Description</th>
+            <th>ProductImage</th>
+            <th>Category</th>
+            <th>ORDER</th>
+        </tr>
+        {% for i in prdlist%}
+        <tr>
+            <td>{{i.id}}</td>
+            <td>{{i.Pname}}</td>
+            <td>{{i.Price}}</td>
+            <td>{{i.Description}}</td>
+            <td><img src="{{i.pimage}}" height="150" width="200"></td>
+            <td>{{i.Category}}</td>
+            <td>
+                {% if user.is_authenticated %}
+
+                <h6><button><a href="getCart?id={{i.id}}">Add To Cart</a></button></h6>
+                {% else %}
+                <h6><button><a href="userlogin">Add To Cart</a></button></h6>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br><br>
+</form>
+{% endblock %}
